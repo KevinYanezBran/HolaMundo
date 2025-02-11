@@ -1,0 +1,32 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #4a90e2;
+  }
+  
+  ion-item {
+    width: 80%;
+  }
+  
+  ion-button {
+    margin-top: 20px;
+  }
+  
+  .modal-container {
+    text-align: center;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  

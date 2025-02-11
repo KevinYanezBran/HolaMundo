@@ -1,0 +1,48 @@
+<ion-content class="ion-padding">
+  <div class="register-container">
+    <h2>Registro de Usuario</h2>
+
+    <!-- Correo -->
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="mail" (ionInput)="validateForm()"></ion-input>
+    </ion-item>
+    <p *ngIf="mailError" class="error-text">{{ mailError }}</p>
+
+    <!-- Nombre Completo -->
+    <ion-item>
+      <ion-label position="floating">Nombre Completo</ion-label>
+      <ion-input type="text" [(ngModel)]="fullName" (ionInput)="validateForm()"></ion-input>
+    </ion-item>
+
+    <!-- Usuario -->
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input type="text" [(ngModel)]="user" (ionInput)="validateForm()"></ion-input>
+    </ion-item>
+    <p *ngIf="userError" class="error-text">{{ userError }}</p>
+
+    <!-- Contraseña -->
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password" (ionInput)="validateForm()"></ion-input>
+    </ion-item>
+    <p *ngIf="passwordError" class="error-text">{{ passwordError }}</p>
+
+    <!-- Confirmar Contraseña -->
+    <ion-item>
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmPassword" (ionInput)="validateForm()"></ion-input>
+    </ion-item>
+    <p *ngIf="confirmPasswordError" class="error-text">{{ confirmPasswordError }}</p>
+
+    <!-- Fecha de Nacimiento -->
+    <ion-item>
+      <ion-label position="floating">Fecha de Nacimiento</ion-label>
+      <ion-input type="date" [(ngModel)]="birthDate" (ionInput)="validateForm()"></ion-input>
+    </ion-item>
+
+    <!-- Botón de Registro -->
+    <ion-button expand="full" [disabled]="!isValid" (click)="registerUser()">Registrarse</ion-button>
+  </div>
+</ion-content>
