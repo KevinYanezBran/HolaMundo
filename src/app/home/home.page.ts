@@ -1,6 +1,8 @@
+// author: Kevin Omar Yañez Bran
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,26 +15,30 @@ export class HomePage {
   password: string = '';
   isValid: boolean = false;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController,
+    private router: Router
+  ) {}
 
   validateForm() {
-    // Convertir username a minúsculas y eliminar espacios
     this.username = this.username.toLowerCase().replace(/\s/g, '');
     this.password = this.password.replace(/\s/g, '');
-
-    // Verificar que ambos campos no estén vacíos
     this.isValid = this.username.length > 0 && this.password.length > 0;
   }
 
-  async openModal() {
-    const modal = await this.modalCtrl.create({
-      component: ModalPage,
-      componentProps: {
-        username: this.username,
-        password: this.password,
-      },
+
+  async login() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Ingresando...',
+      duration: 3000,
+      spinner: 'crescent',
     });
 
-    await modal.present();
+    await loading.present();
+
+    setTimeout(() => {
+      this.router.navigate(['/home2']);
+    }, 3000);
   }
 }

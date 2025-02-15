@@ -1,3 +1,4 @@
+<!-- author: Kevin Omar Yañez Bran -->
 <ion-content class="ion-padding">
   <div class="login-container">
     <h2>Iniciar sesión</h2>
@@ -12,6 +13,6 @@
       <ion-input [(ngModel)]="password" (ionInput)="validateForm()" type="password"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" [disabled]="!isValid" (click)="openModal()">Ingresar</ion-button>
+    <ion-button expand="block" [disabled]="!isValid" (click)="login()">Ingresar</ion-button>
   </div>
 </ion-content>
