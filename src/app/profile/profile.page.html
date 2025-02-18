@@ -1,0 +1,20 @@
+<!-- author: Kevin Omar Yañez Bran -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-container" *ngIf="user">
+    <h2>Mi Perfil</h2>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Usuario:</strong> {{ user.username }}</p>
+    <p><strong>Rol:</strong> {{ user.role }}</p>
+    <p><strong>Último Ingreso:</strong> {{ user.last_login }}</p>
+  </div>
+
+  <div class="profile-container" *ngIf="!user">
+    <p>Cargando perfil...</p>
+  </div>
+</ion-content>

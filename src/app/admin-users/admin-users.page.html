@@ -1,0 +1,87 @@
+<!-- author: Kevin Omar Yañez Bran -->
+<ion-content>
+  <h2>Usuarios Registrados</h2>
+  <ion-tabs>
+    <!-- 🔹 Barra de Tabs -->
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="list-users">
+        <ion-icon name="people"></ion-icon>
+        <ion-label>Usuarios</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="add-user" *ngIf="hasPermissions">
+        <ion-icon name="person-add"></ion-icon>
+        <ion-label>Agregar</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="edit-user" *ngIf="hasPermissions">
+        <ion-icon name="create"></ion-icon>
+        <ion-label>Modificar</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+    <!-- 🔹 Contenido de cada Tab -->
+    <ion-tab tab="list-users">
+      <ion-content>
+        <h2>Usuarios Registrados</h2>
+        <ion-list>
+          <ion-item *ngFor="let user of users">
+            <ion-label>
+              <h3>{{ user.username }}</h3>
+              <p>Email: {{ user.email }}</p>
+              <p>Rol: {{ user.role }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-tab>
+
+    <ion-tab tab="add-user" *ngIf="hasPermissions">
+      <ion-content>
+        <h2>Agregar Usuario</h2>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="newUser.email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input [(ngModel)]="newUser.username" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="newUser.password" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Rol</ion-label>
+          <ion-select [(ngModel)]="newUser.role">
+            <ion-select-option value="admin">Admin</ion-select-option>
+            <ion-select-option value="user">Usuario</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button expand="full" (click)="addUser()">Agregar</ion-button>
+      </ion-content>
+    </ion-tab>
+
+    <ion-tab tab="edit-user" *ngIf="hasPermissions">
+      <ion-content>
+        <h2>Modificar Usuario</h2>
+        <ion-item>
+          <ion-label position="floating">Seleccionar Usuario</ion-label>
+          <ion-select [(ngModel)]="selectedUser" (ionChange)="loadUserData()">
+            <ion-select-option *ngFor="let user of users" [value]="user">{{ user.username }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="selectedUser">
+          <ion-label position="floating">Nuevo Rol</ion-label>
+          <ion-select [(ngModel)]="selectedUser.role">
+            <ion-select-option value="admin">Admin</ion-select-option>
+            <ion-select-option value="user">Usuario</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="full" (click)="updateUser()" *ngIf="selectedUser">Guardar Cambios</ion-button>
+      </ion-content>
+    </ion-tab>
+  </ion-tabs>
+</ion-content>
